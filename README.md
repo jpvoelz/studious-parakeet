@@ -5,3 +5,6 @@ Divide and Conquer
 - Counting inversions in an array
 - Karatsuba multiplication
 - Quicksort
+
+Graphs
+- Karger randomized min cut algorithm
