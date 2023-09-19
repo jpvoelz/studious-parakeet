@@ -100,7 +100,8 @@ class Graph {
         }
 };
 
-double arr_average(vector<int> arr){
+template <typename T>
+double arr_average(vector<T> arr){
 
     int sum = 0;
     for (int num : arr) {
@@ -113,14 +114,19 @@ double arr_average(vector<int> arr){
 void simulation(){
     int n_nodes = 50;
     int max_dist = 10;
-    Graph graph_20 = Graph(n_nodes, 0.2, max_dist);
-    Graph graph_40 = Graph(n_nodes, 0.4, max_dist);
-    vector<int> distance_20 = graph_20.dijkstra(0);
-    vector<int> distance_40 = graph_40.dijkstra(0);
-    double avg_20 = arr_average(distance_20);
-    double avg_40 = arr_average(distance_40);
-    cout << "The average path for the graph of density 0.2 is " << avg_20 << endl;
-    cout << "The average path for the graph of density 0.4 is " << avg_40 << endl;
+    vector<double> avg_20;
+    vector<double> avg_40;
+    for(int i = 0; i < 50; i++){
+        Graph graph_20 = Graph(n_nodes, 0.2, max_dist);
+        Graph graph_40 = Graph(n_nodes, 0.4, max_dist);
+        vector<int> distance_20 = graph_20.dijkstra(0);
+        vector<int> distance_40 = graph_40.dijkstra(0);
+        avg_20.push_back(arr_average(distance_20));
+        avg_40.push_back(arr_average(distance_40));
+    }
+    
+    cout << "The average path for the graph of density 0.2 is " << arr_average(avg_20) << endl;
+    cout << "The average path for the graph of density 0.4 is " << arr_average(avg_40) << endl;
 }
 
 int main(){
