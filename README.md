@@ -8,3 +8,4 @@ Divide and Conquer
 
 Graphs
 - Karger randomized min cut algorithm
+- Dijkstra's shortest path algorithm, with Monte Carlo simulation over random graphs
