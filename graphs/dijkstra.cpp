@@ -63,9 +63,11 @@ class Graph {
             }
 
             // Print shortest distances
-            printf("Vertex Distance from Source\n");
-            for (int i = 0; i < n; ++i)
-                printf("%d \t\t %d\n", i, distance[i]);
+            //printf("Vertex Distance from Source\n");
+            //for (int i = 0; i < n; ++i)
+                //printf("%d \t\t %d\n", i, distance[i]);
+
+            return distance;
         }
 
         Graph(int n, double density, int dist_range){
@@ -98,11 +100,32 @@ class Graph {
         }
 };
 
+double arr_average(vector<int> arr){
+
+    int sum = 0;
+    for (int num : arr) {
+        sum += num;
+    }
+    double average = static_cast<double>(sum) / arr.size();
+    return average;
+}
+
+void simulation(){
+    int n_nodes = 50;
+    int max_dist = 10;
+    Graph graph_20 = Graph(n_nodes, 0.2, max_dist);
+    Graph graph_40 = Graph(n_nodes, 0.4, max_dist);
+    vector<int> distance_20 = graph_20.dijkstra(0);
+    vector<int> distance_40 = graph_40.dijkstra(0);
+    double avg_20 = arr_average(distance_20);
+    double avg_40 = arr_average(distance_40);
+    cout << "The average path for the graph of density 0.2 is " << avg_20 << endl;
+    cout << "The average path for the graph of density 0.4 is " << avg_40 << endl;
+}
+
 int main(){
 
-    Graph graph = Graph(10, 0.2, 5);
-    graph.print_graph();
-    graph.dijkstra(0);
+    simulation();
     return 0;
 
 }
